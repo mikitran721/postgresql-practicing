@@ -1,5 +1,16 @@
 # THUC HANH POSTGRESQL `COFFEE`
 
+-- DROP TABLES
+
+````sql
+DROP TABLE IF EXISTS employees CASCADE;
+DROP TABLE IF EXISTS shops CASCADE;
+DROP TABLE IF EXISTS locations CASCADE;
+DROP TABLE IF EXISTS suppliers CASCADE;```
+
+
+-- CREATE TABLES ========================================
+
 - tao table
 - ```sql
   -- create employees table
@@ -20,7 +31,7 @@
     coffeeshop_name VARCHAR(50),
     city_id INT
     );
-  ```
+````
 
 - Them khoai ngoai cho `employees`
 
@@ -56,4 +67,28 @@ CREATE TABLE suppliers(
 	FOREIGN KEY (coffeeshop_id) REFERENCES shops(coffeeshop_id)
 	ON DELETE CASCADE
 );
+```
+
+# INSER INTO DATA
+
+- for table `employees`
+
+```sql
+INSERT INTO employees VALUES (501559, 'Carson', 'Mosconi', 'cmosconi0@census.gov', '2015/08/29', 'M', 32973, NULL);
+INSERT INTO employees VALUES (144108, 'Khalil', 'Corr', 'kcorr1@github.io', '2014/04/23', 'M', 52802, NULL);
+```
+
+- for table `shops`
+
+```sql
+INSERT INTO shops VALUES(1, 'Common Grounds', NULL);
+```
+
+- update `coffeeshop_id`
+
+```sql
+-- set coffeeshop_id for the first two employees
+UPDATE employees
+SET coffeeshop_id =1
+WHERE employee_id IN (501559,144108)
 ```
