@@ -33,16 +33,36 @@ order by salary desc;
 select a.pay_category, count (*)
 from
     (select
-        employee_id, first_name,last_name,salary
+        employee_id, first_name, last_name, salary,
         CASE
-            when salary <20000 then 'low pay'
+            when salary < 20000 then 'low pay'
             when salary between 20000 and 50000 then 'medium pay'
-            when salary >50000 then 'high pay'
+            when salary > 50000 then 'high pay'
             else 'no pay'
         end as pay_category
         from employees
         order by salary desc) a
 group by a.pay_category;
+
+
+-- Return the count of employees in each pay category
+SELECT a.pay_category, COUNT(*)
+FROM(
+	SELECT
+		employee_id,
+	    first_name || ' ' || last_name as full_name,
+		salary,
+    CASE
+			WHEN salary < 20000 THEN 'low pay'
+			WHEN salary BETWEEN 20000 and 50000 THEN 'medium pay'
+			WHEN salary > 50000 THEN 'high pay'
+			ELSE 'no pay'
+		END as pay_category
+	FROM employees
+	ORDER BY salary DESC
+) a
+GROUP BY a.pay_category;
+
 
 -- transpose above (rut ngan nested select ben tren)
 select
